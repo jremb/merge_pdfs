@@ -37,11 +37,11 @@ void iterFiles(const std::string& inputPath, std::string& outputPath)
 			noPdfsFlag = false;
 			merge(base, filename);	
 		}
-		writePDF(base, outputPath);
-		
-		if (noPdfsFlag)
-			std::cout << "No PDFs found in the following directory:\n" << inputPath << "\n";
 	}
+	if (!noPdfsFlag)
+		writePDF(base, outputPath);
+	else
+		std::cout << "No PDFs found in the following directory:\n" << inputPath << "\n";
 }
 
 void savePaths(const std::string& inputPath, const std::string& outputPath)
