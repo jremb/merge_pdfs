@@ -35,13 +35,12 @@ void iterFiles(const std::string& inputPath, std::string& outputPath)
 			std::cerr << filename << " is not a pdf file.\n";
 		else {
 			noPdfsFlag = false;
-			merge(base, filename);
-			writePDF(base, outputPath);
+			merge(base, filename);	
 		}
-
-		if (noPdfsFlag) {
+		writePDF(base, outputPath);
+		
+		if (noPdfsFlag)
 			std::cout << "No PDFs found in the following directory:\n" << inputPath << "\n";
-		}
 	}
 }
 
@@ -73,11 +72,10 @@ void getPaths(std::string& inputPath, std::string& outputPath)
 int main()
 {
 	bool run = true;
+	std::string inputPath;
+	std::string outputPath;
+	std::ifstream inData{ "pdf_merge_paths.txt" };
 	do {
-		std::string inputPath;
-		std::string outputPath;
-		std::ifstream inData{ "pdf_merge_paths.txt" };
-
 		std::cout << "NOTE:\nIn order for the program to merge PDFs in the right order,\n"
 			<< "their filenames should begin with an ordered sequence. E.g.,\n"
 			<< "'1 file.pdf', '2 file.pdf' etc...\n\n"
